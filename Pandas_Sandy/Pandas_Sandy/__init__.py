@@ -72,11 +72,42 @@ class DataFrame: # Description of this class below.
 
     #...........STEP-3 Complete..........................
 
-    def __len__(self):
-        pass
+   def __len__(self): # int: the number of rows in the dataframe
+        
+       # for loop process 
+       for value in self._data.values():
+           return len(value) 
 
+    """
+        (Another process)
 
-    #print('Testing the init method')
+        return len(self._data.values()[0])
+        This is a dict view
+        Doesn't allow indexing...so we can't use return(df[0])
+        Error: 'dict_values' object does not support indexing
+    """
+    """
+        (Yet another process)
+
+        Create iterator
+        Manually iterating
+        return len(next(iter(self._data.values())))
+        next()..very first iteration..very first numpy array
+    
+    """
+    ##...........................................##
+
+    @property # Python property decorator
+              # Will transform what looks 
+              # like a method into an attribute
+    def columns(self):
+        # Works only with Python 3.6+
+        return list(self._data)
+        # we are only getting the keys(col. names) not the values
+        # chill !! 
+        # Works this way when we iterate
+        
+
 
 
 
