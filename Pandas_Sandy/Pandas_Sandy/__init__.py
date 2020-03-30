@@ -106,8 +106,24 @@ class DataFrame: # Description of this class below.
         # we are only getting the keys(col. names) not the values
         # chill !! 
         # Works this way when we iterate
-        # change 1
-        # change 2
+       # Original
+       
+    @columns.setter
+    def columns(self, columns):
+        if not isinstance(columns, list):
+            raise TypeError('New columns must be a list')
+        if len(columns) != len(self.columns):
+            raise ValueError(f'New column names must be {len(self._data)}')
+        else:
+            for col in columns:
+                if not isinstance(col, str):
+                    raise TypeError('New column names must be strings')
+        if len(columns) != len(set(columns)): # Sets have unique values
+            raise ValueError('Columns names must be unique')
+
+        new_data = dict(zip(columns, self._data.values()))
+        self._data = new_data
+
         
 
 
