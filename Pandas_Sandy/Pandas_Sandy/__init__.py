@@ -123,6 +123,7 @@ class DataFrame: # Description of this class below.
 
         new_data = dict(zip(columns, self._data.values()))
         self._data = new_data
+        #changes
 
         
 
