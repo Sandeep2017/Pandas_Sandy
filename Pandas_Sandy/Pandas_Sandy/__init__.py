@@ -131,6 +131,39 @@ class DataFrame: # Description of this class below.
        # We already did __len__ ... so we call that on self
 
     def _repr_html(self):
+
+        """
+        Used to create a string of HTML to nicely display the DataFrame
+        in a Jupyter Notebook. Different string formatting is used for
+        different data types.
+
+        The structure of the HTML is as follows:
+        <table>
+            <thead>
+                <tr>
+                    <th>data</th>
+                    ...
+                    <th>data</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>{i}</strong></td>
+                    <td>data</td>
+                    ...
+                    <td>data</td>
+                </tr>
+                ...
+                <tr>
+                    <td><strong>{i}</strong></td>
+                    <td>data</td>
+                    ...
+                    <td>data</td>
+                </tr>
+            </tbody>
+        </table>
+        """
+
         html = '<table><thread><tr><th></th>'
         for col in self.columns:
             html += f"<th>{col:10}</th>"
