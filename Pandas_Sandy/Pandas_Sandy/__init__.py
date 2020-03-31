@@ -221,17 +221,26 @@ class DataFrame: # Description of this class below.
         html += '</tbody></table>'
         return html
 
+    @property
+    def values(self): # Returns a single 2D numpy array of the underlying data
+                      # Until now out _data attribute is storing all our data
+                      # We need to convert that to numpy array
+        return np.column_stack(list(self._data.values()))
+        # forcing it to be a list of numpy arrays
+    
 
-
-
-       
+    @property
+    def dtypes(self):
         
-        
+        DTYPE_NAME = {'O': 'string', 'i': 'int', 'f': 'float', 'b': 'bool'}
+        col_arr = np.array(self.columns)
+        dtypes = []
+        for values in self._data.values():
+            kind = values.dtype.kind
+            dtype = DTYPE_NAME[kind]
+            dtypes.append(dtype)
 
-        
+        return DataFrame({'Column Name': col_arr, 'Data Type': np.array(dtypes)})
 
-
-
-
-    ##...........................................##
+        ##...........................................##
 
